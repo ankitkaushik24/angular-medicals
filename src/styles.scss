@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+
+ul {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: #f2f6f9;;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: #f2f6f9;;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #aab9c7;
+    border: 2px solid #f2f6f9;;
+  }
+}
+
+button {
+  padding: 10px;
+  border-radius: 4px;
+  width: fit-content;
+  cursor: pointer;
+  min-width: 150px;
+
+  &.secondary {
+    color: darkred;
+    border: 1px solid darkred;
+    background: #fff;
+  }
+  &.primary {
+    color: #fff;
+    border: 0;
+    background: darkred;
+  }
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+.ak-control.ng-touched.ng-invalid {
+  border: 1px solid #e91e1e;
+}

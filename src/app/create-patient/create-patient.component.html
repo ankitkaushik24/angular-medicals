@@ -1,0 +1,96 @@
+<header>
+  <h2>Create Patient</h2>
+</header>
+<form [formGroup]="patientForm" (ngSubmit)="createPatient()">
+
+  <section>
+    <ak-form-field [title]="'Patient ID'">
+      <input type="text" class="ak-control" [formControlName]="'patientID'" placeholder="Enter patient ID"/>
+    </ak-form-field>
+    <ak-form-field [title]="'Password'">
+      <input type="password" class="ak-control" [formControlName]="'password'" placeholder="Enter patient's password"/>
+    </ak-form-field>
+  </section>
+
+  <section>
+    <div class="sub-section sub-section_1">
+      <ak-form-field [title]="'Age'">
+        <input type="number" class="ak-control" [formControlName]="'age'"/>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Sex'">
+        <ak-dropdown class="ak-control" [formControlName]="'gender'">
+          <ak-option value="Male" display="Male">Male</ak-option>
+          <ak-option value="Female" display="Female">Female</ak-option>
+        </ak-dropdown>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Weight'" class="span-all">
+        <input type="number" class="ak-control" [formControlName]="'weight'"/>
+        <ak-dropdown class="ak-control" [formControlName]="'weightUnit'">
+          <ak-option value="lb" display="lbs">lbs</ak-option>
+          <ak-option value="kg" display="kg">kg</ak-option>
+        </ak-dropdown>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Medications'" class="span-all">
+        <ak-dropdown class="ak-control" [value]="medications.enabled && medications.length > 0">
+          <ak-option [value]="true" display="Yes" (click)="enableMedications()">Yes</ak-option>
+          <ak-option [value]="false" display="No" (click)="disableMedications()">No</ak-option>
+        </ak-dropdown>
+      </ak-form-field>
+    </div>
+
+    <div class="sub-section sub-section_2">
+      <ak-form-field [title]="'Height'">
+        <input type="number" class="ak-control" [formControlName]="'height'"/>
+        <ak-dropdown [formControlName]="'heightUnit'" class="ak-control">
+          <ak-option value="ft" display="Ft">Ft</ak-option>
+          <ak-option value="cm" display="cm">cm</ak-option>
+        </ak-dropdown>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Country'">
+        <ak-dropdown class="ak-control" [formControlName]="'country'">
+          <ak-option *ngFor="let country of countries" [value]="country.alpha2Code" [display]="country.name">
+            <img class="country-flag" [src]="country.flag">{{country.name}}</ak-option>
+        </ak-dropdown>
+      </ak-form-field>
+    </div>
+  </section>
+  <ng-container formArrayName="medications" *ngIf="medications.length">
+    <section class="medications-section" *ngFor="let medication of medications.controls; let i=index"
+                  [formGroupName]="i">
+      <ak-form-field [title]="'Medication Type'">
+        <input type="text" class="ak-control" [formControlName]="'medicationType'"/>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Medication Name'">
+        <input type="text" class="ak-control" [formControlName]="'medicationName'"/>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Medication Dose'">
+        <input type="number" class="ak-control" [formControlName]="'medicationDosage'"/>
+        <ak-dropdown [formControlName]="'medicationUnit'" class="ak-control">
+          <ak-option value="mg" display="mg">Mg</ak-option>
+          <ak-option value="gm" display="gm">Gm</ak-option>
+        </ak-dropdown>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Number of pills(optional)'">
+        <input type="number" class="ak-control" [formControlName]="'medicationCount'"/>
+      </ak-form-field>
+
+      <ak-form-field [title]="'Instructions'" class="span-all">
+        <input type="text" class="ak-control" [formControlName]="'specifications'"/>
+      </ak-form-field>
+
+      <button type="button" (click)="removeMedication(i)" class="secondary">Delete medication</button>
+    </section>
+    <button type="button" (click)="addMedication()" class="secondary">+ Add medication</button>
+  </ng-container>
+  <footer>
+    <button type="button" disabled [ngStyle]="{opacity: 0.6}" class="secondary">Cancel</button>
+    <button [akFormSubmit]="patientForm" class="primary">Submit</button>
+  </footer>
+</form>

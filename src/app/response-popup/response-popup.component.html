@@ -1,0 +1,6 @@
+<dialog [open]="true" [ngSwitch]="data.type" id="my_response_popup">
+  <i class="success-icon" *ngSwitchCase="'success'">Success</i>
+  <i class="err-icon" *ngSwitchCase="'error'">Error</i>
+  <h3>{{data.message}}</h3>
+  <p>{{data.response | json}}</p>
+</dialog>

@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  ::ng-deep .ak-control {
+    border: 0;
+    background: #fff;
+    padding: 6px;
+    border-radius: 4px;
+    width: 0;
+    flex-grow: 1;
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}
+
+.controls-container {
+  display: flex;
+}
+
+.field-title {
+  padding-bottom: 5px;
+}

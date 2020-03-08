@@ -1,0 +1,49 @@
+:host {
+  background: #eee;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px 50px;
+  padding: 20px 0;
+
+  &:nth-of-type(1), &.medications-section {
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 2px 0;
+  }
+}
+
+.sub-section {
+  display: grid;
+  grid-gap: 20px 30px;
+  &_1 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &_2 {
+    grid-template-rows: repeat(2, 50px);
+  }
+}
+
+.span-all {
+  grid-column: span 2;
+}
+
+.country-flag {
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
+}
+
+footer {
+  padding: 25px 0;
+}
