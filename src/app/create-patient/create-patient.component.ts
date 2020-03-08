@@ -21,8 +21,7 @@ export class CreatePatientComponent implements OnInit {
     this.patientForm = this.createPatientForm();
     this.http.get('https://restcountries.eu/rest/v2/', {
       headers: {accept: 'application/json'}
-    })
-      .subscribe(countries => {
+    }).subscribe((countries: any[]) => {
       this.countries = countries;
     });
   }
